@@ -37,7 +37,7 @@ requestForm.addEventListener('submit',event=>{
  $('request-duration').value=state.duration+' minutes';
  $('request-pressure').value=state.pressure;
  $('request-extras').value=[...extras,...flirty].filter(x=>state.extras.has(x[0])).map(x=>x[1]).join('; ')||'None';
- $('request-status').textContent='Sending you to the final verification. No email app needed.';
+ $('request-status').textContent='Sending your request. One moment…';
 });
 $('send-request').disabled=false;
 window.addEventListener('pageshow',()=>{$('request-status').textContent='';$('preferred-date').min=todayLocal()});
