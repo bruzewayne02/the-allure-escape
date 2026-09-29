@@ -6,7 +6,7 @@ const services=[
 {id:'sport',name:'Recovery Massage',description:'Targeted attention for hardworking shoulders, legs and back.',tag:'BACK TO YOURSELF'},
 {id:'couples',name:'Together, Unwind',description:'A side-by-side massage experience for your favorite plus-one.',tag:'BETTER WITH TWO'}];
 const extras=[['scalp','Scalp massage','A little head-in-the-clouds moment.'],['feet','Foot & hand focus','Extra care, right to your fingertips.'],['towels','Warm towels','The coziest finishing touch.'],['aroma','Aromatherapy oil','Soft lavender or fresh eucalyptus.']];
-const flirty=[['candle','You, me & candlelight','Soft light. Very good company.'],['attention','A little extra attention','Shoulders, neck… wherever you ask.'],['slow','Take your time with me','An unhurried pace. Nowhere else to be.'],['closer','Stay a little closer','Finish with a cozy moment together.']];
+const flirty=[['candle','You & candlelight','Soft light. Very good company.'],['attention','A little extra attention','Shoulders, neck… wherever you ask.'],['slow','Take your time','An unhurried pace. Nowhere else to be.'],['closer','One last little indulgence','All happy things must come to an end.']];
 let state={step:0,service:'swedish',duration:60,pressure:'Medium',extras:new Set()};
 const $=id=>document.getElementById(id);const selectedService=()=>services.find(s=>s.id===state.service);
 function optionMarkup(x){return `<button class="extra ${state.extras.has(x[0])?'selected':''}" data-extra="${x[0]}" aria-pressed="${state.extras.has(x[0])}"><i aria-hidden="true">${state.extras.has(x[0])?'✓':'＋'}</i><span><strong>${x[1]}</strong><small>${x[2]}</small></span></button>`}
