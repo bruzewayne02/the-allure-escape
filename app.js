@@ -29,28 +29,15 @@ const requestForm=$('request-form');
 function todayLocal(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
 $('preferred-date').min=todayLocal();
 $('preferred-date').addEventListener('input',()=>{$('preferred-date').setCustomValidity('')});
-function requestEmailBody(){
- const fields=requestForm.elements;
- return [
- 'My Allure Escape date request',
- 'Massage: '+selectedService().name,
- 'Duration: '+state.duration+' minutes',
- 'Pressure: '+state.pressure,
- 'Finishing touches: '+([...extras,...flirty].filter(x=>state.extras.has(x[0])).map(x=>x[1]).join('; ')||'None'),
- 'Preferred date: '+$('preferred-date').value,
- 'Name: '+(fields.namedItem('name').value.trim()||'Not provided'),
- 'Reply email: '+(fields.namedItem('email').value.trim()||'Use sender address'),
- 'Special requests: '+(fields.namedItem('special_requests').value.trim()||'None')
- ].join('\n');
-}
 requestForm.addEventListener('submit',event=>{
- event.preventDefault();
  const date=$('preferred-date');date.min=todayLocal();
- if(date.value<date.min){date.setCustomValidity('Please choose today or a future date.');date.reportValidity();return}
- if(!requestForm.checkValidity()){requestForm.reportValidity();return}
- const body=requestEmailBody();
- $('request-status').textContent='Your preferred date is selected: '+date.value+'. Finish sending in your email app. Once your email is received, we’ll follow up to confirm the details. This page cannot verify that you sent it.';
- window.location.href='mailto:allure@stoneoakone.com?subject='+encodeURIComponent('The Allure Escape — New date request')+'&body='+encodeURIComponent(body);
+ if(date.value<date.min){event.preventDefault();date.setCustomValidity('Please choose today or a future date.');date.reportValidity();return}
+ if(!requestForm.checkValidity()){event.preventDefault();requestForm.reportValidity();return}
+ $('request-massage').value=selectedService().name;
+ $('request-duration').value=state.duration+' minutes';
+ $('request-pressure').value=state.pressure;
+ $('request-extras').value=[...extras,...flirty].filter(x=>state.extras.has(x[0])).map(x=>x[1]).join('; ')||'None';
+ $('request-status').textContent='Sending you to the final verification. No email app needed.';
 });
 $('send-request').disabled=false;
 window.addEventListener('pageshow',()=>{$('request-status').textContent='';$('preferred-date').min=todayLocal()});
