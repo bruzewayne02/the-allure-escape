@@ -29,7 +29,8 @@ const requestForm=$('request-form');
 function todayLocal(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
 $('preferred-date').min=todayLocal();
 $('preferred-date').addEventListener('input',()=>{$('preferred-date').setCustomValidity('')});
-requestForm.addEventListener('submit',event=>{
+requestForm.addEventListener('submit',async event=>{
+ event.preventDefault();
  const date=$('preferred-date');date.min=todayLocal();
  if(date.value<date.min){event.preventDefault();date.setCustomValidity('Please choose today or a future date.');date.reportValidity();return}
  if(!requestForm.checkValidity()){event.preventDefault();requestForm.reportValidity();return}
@@ -37,9 +38,20 @@ requestForm.addEventListener('submit',event=>{
  $('request-duration').value=state.duration+' minutes';
  $('request-pressure').value=state.pressure;
  $('request-extras').value=[...extras,...flirty].filter(x=>state.extras.has(x[0])).map(x=>x[1]).join('; ')||'None';
+ const btn=$('send-request');btn.disabled=true;
  $('request-status').textContent='Sending your request. One moment…';
+ try{
+  const res=await fetch(requestForm.action,{method:'POST',headers:{Accept:'application/json'},body:new FormData(requestForm)});
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok||!data.success)throw new Error(data.message||'Request failed');
+  $('request-status').textContent='Request sent! Taking you to your confirmation…';
+  location.assign('thanks.html');
+ }catch{
+  btn.disabled=false;
+  $('request-status').textContent='Hmm, that didn’t go through. Please check your connection and try again.';
+ }
 });
 $('send-request').disabled=false;
-window.addEventListener('pageshow',()=>{$('request-status').textContent='';$('preferred-date').min=todayLocal()});
+window.addEventListener('pageshow',()=>{$('request-status').textContent='';$('send-request').disabled=false;$('preferred-date').min=todayLocal()});
 render();
 
