@@ -1,6 +1,6 @@
 const services=[
 {id:'swedish',name:'Swedish Massage',description:'Long, flowing strokes and gentle, rhythmic pressure invite full-body relaxation. Settle in, switch off, and enjoy having all the attention.',tag:'THE CLASSIC RESET'},
-{id:'deep',name:'Deep Tissue',description:'Slow, focused pressure for the tension you’ve been carrying. Strong hands. Applying pressure. Those knots have had it too good for too long.',tag:'LET IT ALL GO'},
+{id:'deep',name:'Deep Tissue',description:'Slow, focused pressure for the tension you’ve been carrying. Let’s work out that attitude. Applying pressure. Those knots have had it too good for too long.',tag:'LET IT ALL GO'},
 {id:'aroma',name:'Aromatherapy',description:'Gentle, flowing massage paired with softly scented oils creates a calm, intimate escape. Breathe deeply.',tag:'BREATHE IT IN'},
 {id:'sport',name:'Recovery Massage',description:'Tweaked your back and won’t go to the chiropractor? We had a feeling. Focused attention for tired muscles, with a little bossy persuasion to lie down and let someone else take charge.',tag:'BACK TO YOURSELF'},
 ];
