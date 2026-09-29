@@ -1,10 +1,8 @@
 const services=[
 {id:'swedish',name:'Swedish Massage',description:'Long, flowing strokes. A full-body invitation to switch off.',tag:'THE CLASSIC RESET'},
 {id:'deep',name:'Deep Tissue',description:'Focused, firmer work for the tension you’ve been carrying.',tag:'LET IT ALL GO'},
-{id:'stone',name:'Hot Stone Ritual',description:'Warm stones and slow massage for a little extra comfort.',tag:'WARMTH, EVERYWHERE'},
 {id:'aroma',name:'Aromatherapy',description:'Gentle massage paired with a scent that sets the mood.',tag:'BREATHE IT IN'},
 {id:'sport',name:'Recovery Massage',description:'Targeted attention for hardworking shoulders, legs and back.',tag:'BACK TO YOURSELF'},
-{id:'couples',name:'Together, Unwind',description:'A side-by-side massage experience for your favorite plus-one.',tag:'BETTER WITH TWO'}];
 const extras=[['scalp','Scalp massage','A little head-in-the-clouds moment.'],['feet','Foot & hand focus','Extra care, right to your fingertips.'],['towels','Warm towels','The coziest finishing touch.'],['aroma','Aromatherapy oil','Soft lavender or fresh eucalyptus.']];
 const flirty=[['candle','You & candlelight','Soft light. Very good company.'],['attention','A little extra attention','Shoulders, neck… wherever you ask.'],['slow','Take your time','An unhurried pace. Nowhere else to be.'],['closer','One last little indulgence','All happy things must come to an end.']];
 let state={step:0,service:'swedish',duration:60,pressure:'Medium',extras:new Set()};
