@@ -25,4 +25,21 @@ function go(step){state.step=step;render();document.querySelector('.steps').scro
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.service){state.service=b.dataset.service;render()}if(b.dataset.duration){state.duration=+b.dataset.duration;render()}if(b.dataset.pressure){state.pressure=b.dataset.pressure;render()}if(b.dataset.extra){state.extras.has(b.dataset.extra)?state.extras.delete(b.dataset.extra):state.extras.add(b.dataset.extra);render()}if(b.dataset.step!==undefined)go(+b.dataset.step)});
 $('next').onclick=()=>go(Math.min(2,state.step+1));$('back').onclick=()=>go(Math.max(0,state.step-1));$('reset').onclick=()=>{state={step:0,service:'swedish',duration:60,pressure:'Medium',extras:new Set()};$('copy-status').textContent='';go(0)};
 $('copy').onclick=async()=>{const chosen=[...extras,...flirty].filter(x=>state.extras.has(x[0])).map(x=>x[1]);const txt=`My Allure Escape ritual\n${selectedService().name}\n${state.duration} minutes · ${state.pressure} pressure\n${chosen.length?'Finishing touches: '+chosen.join(', '):'Just the massage. Perfectly simple.'}`;try{await navigator.clipboard.writeText(txt);$('copy-status').textContent='Copied. Send it to your favorite person.'}catch{$('copy-status').textContent='Select and copy your ritual below.';const t=document.createElement('textarea');t.value=txt;t.style.width='100%';t.rows=6;$('copy-status').appendChild(t);t.select()}};
+const requestForm=$('request-form');
+function todayLocal(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
+$('preferred-date').min=todayLocal();
+$('preferred-date').addEventListener('input',()=>{$('preferred-date').setCustomValidity('')});
+requestForm.addEventListener('submit',event=>{
+ const date=$('preferred-date');date.min=todayLocal();
+ if(date.value<date.min){event.preventDefault();date.setCustomValidity('Please choose today or a future date.');date.reportValidity();return}
+ if(!requestForm.checkValidity()){event.preventDefault();requestForm.reportValidity();return}
+ $('request-massage').value=selectedService().name;
+ $('request-duration').value=state.duration+' minutes';
+ $('request-pressure').value=state.pressure;
+ $('request-extras').value=[...extras,...flirty].filter(x=>state.extras.has(x[0])).map(x=>x[1]).join('; ')||'None';
+ try{sessionStorage.setItem('allure-request-date',date.value)}catch{}
+ $('request-status').textContent='Continuing to secure submission. Please complete the verification if prompted.';
+});
+window.addEventListener('pageshow',()=>{$('request-status').textContent='';$('preferred-date').min=todayLocal()});
 render();
+
