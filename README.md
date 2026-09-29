@@ -1,4 +1,4 @@
-# Velvet Hour
+# The Allure Escape
 
 A massage selection app with personalized spa rituals and playful finishing touches.
 
