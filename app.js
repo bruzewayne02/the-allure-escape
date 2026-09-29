@@ -3,6 +3,7 @@ const services=[
 {id:'deep',name:'Deep Tissue',description:'Focused, firmer work for the tension you’ve been carrying.',tag:'LET IT ALL GO'},
 {id:'aroma',name:'Aromatherapy',description:'Gentle massage paired with a scent that sets the mood.',tag:'BREATHE IT IN'},
 {id:'sport',name:'Recovery Massage',description:'Targeted attention for hardworking shoulders, legs and back.',tag:'BACK TO YOURSELF'},
+];
 const extras=[['scalp','Scalp massage','A little head-in-the-clouds moment.'],['feet','Foot & hand focus','Extra care, right to your fingertips.'],['towels','Warm towels','The coziest finishing touch.'],['aroma','Aromatherapy oil','Soft lavender or fresh eucalyptus.']];
 const flirty=[['candle','You & candlelight','Soft light. Very good company.'],['attention','A little extra attention','Shoulders, neck… wherever you ask.'],['slow','Take your time','An unhurried pace. Nowhere else to be.'],['closer','One last little indulgence','All happy things must come to an end.']];
 let state={step:0,service:'swedish',duration:60,pressure:'Medium',extras:new Set()};
