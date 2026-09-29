@@ -1,11 +1,11 @@
 const services=[
-{id:'swedish',name:'Swedish Massage',description:'Long, flowing strokes. A full-body invitation to switch off.',tag:'THE CLASSIC RESET'},
-{id:'deep',name:'Deep Tissue',description:'Focused, firmer work for the tension you’ve been carrying.',tag:'LET IT ALL GO'},
-{id:'aroma',name:'Aromatherapy',description:'Gentle massage paired with a scent that sets the mood.',tag:'BREATHE IT IN'},
-{id:'sport',name:'Recovery Massage',description:'Targeted attention for hardworking shoulders, legs and back.',tag:'BACK TO YOURSELF'},
+{id:'swedish',name:'Swedish Massage',description:'Long, flowing strokes and gentle, rhythmic pressure invite full-body relaxation. Settle in, switch off, and enjoy having all the attention.',tag:'THE CLASSIC RESET'},
+{id:'deep',name:'Deep Tissue',description:'Slow, focused pressure gives tense muscles a little extra attention, always at your comfort level. A firm touch, with a soft spot for you.',tag:'LET IT ALL GO'},
+{id:'aroma',name:'Aromatherapy',description:'Gentle, flowing massage paired with softly scented oils creates a calm, intimate escape. Breathe deeply. The atmosphere is doing a little flirting, too.',tag:'BREATHE IT IN'},
+{id:'sport',name:'Recovery Massage',description:'Tweaked your back and won’t go to the chiropractor? We had a feeling. Gentle, comfort-focused attention for tired muscles, with a little affectionate persuasion to take it easy. Relaxation only—not injury treatment.',tag:'BACK TO YOURSELF'},
 ];
 const extras=[['scalp','Scalp massage','A little head-in-the-clouds moment.'],['feet','Foot & hand focus','Extra care, right to your fingertips.'],['towels','Warm towels','The coziest finishing touch.'],['aroma','Aromatherapy oil','Soft lavender or fresh eucalyptus.']];
-const flirty=[['candle','You & candlelight','Soft light. Very good company.'],['attention','A little extra attention','Shoulders, neck… wherever you ask.'],['slow','Take your time','An unhurried pace. Nowhere else to be.'],['closer','One last little indulgence','All happy things must come to an end.']];
+const flirty=[['candle','You & candlelight','Soft lighting, warm company, and one less reason to look at your phone. Yes, this is us setting the mood.'],['attention','A little extra attention','A little longer on your favorite spots. Just say where—mind reading is still in training.'],['slow','Take your time','Slow down. Stay close. Your to-do list can survive being the third wheel for a while.'],['closer','One last little indulgence','All happy things must come to an end.']];
 let state={step:0,service:'swedish',duration:60,pressure:'Medium',extras:new Set()};
 const $=id=>document.getElementById(id);const selectedService=()=>services.find(s=>s.id===state.service);
 function optionMarkup(x){return `<button class="extra ${state.extras.has(x[0])?'selected':''}" data-extra="${x[0]}" aria-pressed="${state.extras.has(x[0])}"><i aria-hidden="true">${state.extras.has(x[0])?'✓':'＋'}</i><span><strong>${x[1]}</strong><small>${x[2]}</small></span></button>`}
